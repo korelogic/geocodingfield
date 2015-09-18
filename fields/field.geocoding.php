@@ -241,10 +241,18 @@
 			if(!$cachedData) {
 
 				include_once(TOOLKIT . '/class.gateway.php');
-
+				
+				$apiKeyString = "";
+				$apiKey = Symphony::Configuration()->get('api-key', 'geocodingfield');
+				
+				
+				if(!empty($apiKey)){
+					$apiKeyString = "&key=".$apiKey;
+				}
+				
 				$ch = new Gateway;
 				$ch->init();
-				$ch->setopt('URL', 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');
+				$ch->setopt('URL', 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false'.$apiKeyString);
 				$response = json_decode($ch->exec());
 
 				$coordinates = $response->results[0]->geometry->location;
