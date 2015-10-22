@@ -257,7 +257,7 @@
 				$ch->setopt('URL', 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false'.$apiKeyString);
 				$response = json_decode($ch->exec());
 				
-				Symphony::Log()->pushToLog(__('GEOCODE: ') . $response, null, true);
+				Symphony::Log()->pushToLog(__('GEOCODE: ') . $ch->exec(), null, true);
 
 				$coordinates = $response->results[0]->geometry->location;
 				
