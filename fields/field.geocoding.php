@@ -238,8 +238,6 @@
 			$cachedData = $cache->check($cache_id);
 
 			// no data has been cached
-			
-			Symphony::Log()->pushToLog(__('GEOCODE: ') . "CACHE", null, true);
 			if(!$cachedData) {
 
 				include_once(TOOLKIT . '/class.gateway.php');
@@ -256,12 +254,8 @@
 				$ch->init();
 				$ch->setopt('URL', 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false'.$apiKeyString);
 				$response = json_decode($ch->exec());
-				
-				Symphony::Log()->pushToLog(__('GEOCODE: ') . serialize($response), null, true);
-
+			
 				$coordinates = $response->results[0]->geometry->location;
-				
-				Symphony::Log()->pushToLog(__('GEOCODE: ') . $coordinates, null, true);
 
 				if ($coordinates && is_object($coordinates)) {
 					$cache->write($cache_id, $coordinates->lat . ', ' . $coordinates->lng, $this->_geocode_cache_expire); // cache lifetime in minutes
