@@ -137,7 +137,7 @@
 					array(
 						'alt' => '',
 						'src' => sprintf(
-							'http://maps.google.com/maps/api/staticmap?zoom=7&size=180x100&sensor=false&markers=color:red|size:small|%s',
+							'https://maps.google.com/maps/api/staticmap?zoom=7&size=180x100&sensor=false&markers=color:red|size:small|%s',
 							implode(',', array($data['latitude'], $data['longitude']))
 						)
 				));
