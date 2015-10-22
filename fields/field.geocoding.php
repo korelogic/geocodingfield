@@ -214,7 +214,7 @@
 			if (empty($data)) return;
 
 			$img = sprintf(
-				"<img src='http://maps.google.com/maps/api/staticmap?zoom=6&size=160x90&sensor=false&markers=color:red|size:small|%s' alt=''/>",
+				"<img src='https://maps.google.com/maps/api/staticmap?zoom=6&size=160x90&sensor=false&markers=color:red|size:small|%s' alt=''/>",
 				implode(',', array($data['latitude'], $data['longitude']))
 			);
 
